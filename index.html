@@ -169,7 +169,14 @@ async def custom_site():
 
         # now make a prompt
         fnt = pygame.sysfont.SysFont("freesans",  uy(80) )
-        prompt = fnt.render("Ready to start !", True, "blue")
+        
+prompt_text = "タップしてスタート"
+prompt = fnt.render(prompt_text, True, "white")
+screen.fill((0, 0, 0))  # 背景黒
+screen.blit(prompt, (WIDTH // 2 - 200, HEIGHT // 2 - 40))
+pygame.display.flip()
+print("* Waiting for tap *")
+
         pg_bar(track.len)
         screen.blit(prompt, ( marginx+ ux(80), marginy - uy(10) ) )
         compose()
@@ -487,3 +494,4 @@ frameborder="1"
 
 </body>
 </html>
+

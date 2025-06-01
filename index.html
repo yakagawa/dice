@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <title>Dice Simulator</title>
     <style>
         body {
             margin: 0;
-            background-color: #000;
             overflow: hidden;
+            background-color: #000;
         }
         canvas {
             display: block;
@@ -22,25 +22,30 @@
             color: white;
             font-size: 2em;
             font-family: sans-serif;
+            z-index: 10;
         }
     </style>
 </head>
 <body>
     <div id="tap-to-start">Tap to start</div>
-    <script type="module">
-        import { run } from "./main.py.js";
-
+    <script>
         const tapText = document.getElementById("tap-to-start");
 
         function startApp() {
             if (tapText) tapText.style.display = "none";
-            run(); // pygbagによってmain.pyから自動生成されたJSモジュールを実行
+            if (typeof loadPyodide === "function") {
+                console.log("pyodide already loaded");
+            } else {
+                const script = document.createElement("script");
+                script.src = "pygbag.js"; // pygbagが自動生成
+                script.defer = true;
+                document.body.appendChild(script);
+            }
         }
 
         document.body.addEventListener("click", startApp);
         document.body.addEventListener("touchstart", startApp);
     </script>
-    <script async src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
 </body>
 </html>
 

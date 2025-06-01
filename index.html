@@ -485,5 +485,28 @@ frameborder="1"
 
     </script>
 
+<div id="tap-to-start" style="
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 24px;
+  z-index: 9999;
+  text-align: center;
+">
+  タップして開始！
+</div>
+
+<script>
+document.addEventListener('click', () => {
+  const cover = document.getElementById('tap-to-start');
+  if (cover) cover.style.display = 'none';
+}, { once: true });
+</script>
 </body>
+
 </html>
+
